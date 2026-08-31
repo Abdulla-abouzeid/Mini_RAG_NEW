@@ -13,3 +13,13 @@ This minimal implemantion of rag model
 ```bash
 $ conda  activate mini-rag-app
  ```
+## instaltion 
+### intall reqired packages
+```bash
+$ pip install requiremnts
+```
+### setup enviroment
+```bash
+$ cp .env.example .env
+```
+setup your enviroment like `open_ai_key`
