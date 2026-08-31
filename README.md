@@ -23,3 +23,8 @@ $ pip install requiremnts
 $ cp .env.example .env
 ```
 setup your enviroment like `open_ai_key`
+
+## Command to run fastapi :
+```bash
+$ uvicorn main:app --reload --host 0.0.0.0 --port 5000
+```
