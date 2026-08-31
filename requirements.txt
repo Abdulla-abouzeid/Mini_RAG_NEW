@@ -1,0 +1,4 @@
+fastapi==0.110.2 # webfreamework
+uvivorn[standard]==0.29.0 #web server
+python-multipart==0.0.9 # for file uploads
+
