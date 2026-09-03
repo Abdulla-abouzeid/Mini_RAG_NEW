@@ -1,5 +1,5 @@
 from fastapi import APIRouter,FastAPI,Depends
-from helpers.config import get_settings
+from helpers.config import get_settings ,Settings
 base_router = APIRouter(
     prefix="/api/v1",
     tags=["version1"]
@@ -8,7 +8,7 @@ base_router = APIRouter(
 
 
 @base_router.get("/")
-async def welcome(settings =Depends (get_settings)):
+async def welcome(settings : Settings = Depends (get_settings)):
     
     return {
         "message": "Welcome to all"
