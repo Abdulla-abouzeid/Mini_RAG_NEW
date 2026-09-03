@@ -1,0 +1,6 @@
+fastapi==0.110.2 # webfreamework
+uvicorn[standard] ==0.52.4 #web server
+python-multipart==0.0.9 # for file uploads
+python-dotenv==1.2.3
+pydantic-settings==2.15.0
+
