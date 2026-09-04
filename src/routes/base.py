@@ -11,8 +11,8 @@ base_router = APIRouter(
 async def welcome(settings : Settings = Depends (get_settings)):
     
     return {
-        "message": "Welcome to all"
-        ,"app_name": settings.APP_NAME
-        ,"app_version": settings.APP_VERSION
+        "message": "Welcome to all",
+        "app_name": settings.APP_NAME,
+        "app_version": settings.APP_VERSION
     }
     

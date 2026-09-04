@@ -3,4 +3,5 @@ uvicorn[standard] ==0.52.4 #web server
 python-multipart==0.0.9 # for file uploads
 python-dotenv==1.2.3
 pydantic-settings==2.15.0
+aiofiles==25.1.0
 
