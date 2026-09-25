@@ -23,7 +23,7 @@ data_router = APIRouter(
 @data_router.post("/upload/{project_id}")
 async def upload_data(request:Request, project_id: str,file : UploadFile, app_settings : Settings = Depends (get_settings)):
     
-    project_model=ProjectModel(db_client=request.app.db_client)
+    project_model= await ProjectModel.create_instance(db_client=request.app.db_client)
     project= await project_model.get_project_id_or_create_one(project_id=project_id)
     
     #Validate file type and size
@@ -100,11 +100,7 @@ async def process_endpoint(request_app:Request,project_id:str, request:PrcessReq
                 'signal':ResponseSignal.Proceassing_failed.value
             }
         )
-    chunk_model=ChunkModel(
-                db_client=request_app.app.db_client
-            )    
-    if do_reset==1:
-           _=await chunk_model.delete_chunks_By_Projectid(project.id)
+
     File_chunk_models=[
         DataChunck(
                 chunk_text=chunk.page_content,
@@ -119,6 +115,13 @@ async def process_endpoint(request_app:Request,project_id:str, request:PrcessReq
         )
         for i,chunk in enumerate(file_chuncks)   
     ]    
+    chunk_model= await ChunkModel.create_instance(
+                db_client=request_app.app.db_client
+            )    
+    if do_reset==1:
+           _=await chunk_model.delete_chunks_By_Projectid(
+               project_id=project.id
+               )
     
     no_records= await chunk_model.insert_many_chunks(chunks=File_chunk_models)
     return JSONResponse(

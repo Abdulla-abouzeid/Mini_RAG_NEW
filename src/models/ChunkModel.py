@@ -9,6 +9,26 @@ class ChunkModel(BaseDataModel):
     def __init__(self,db_client:object):
         super().__init__(db_client=db_client)
         self.collection=self.db_client[DataBaseEnum.Collection_Chunck_Name.value]
+        
+    @classmethod
+    async def create_instance(cls,db_client:object):
+        instance=cls(db_client)
+        await instance.init_collection_chunck() 
+        return instance  
+    async def init_collection_chunck(self):
+        all_collection=await self.db_client.list_collection_names()
+        if DataBaseEnum.Collection_Chunck_Name.value not in all_collection:
+             self.collection=self.db_client[DataBaseEnum.Collection_Chunck_Name.value]
+        indexs= DataChunck.get_index()  
+        for index in indexs:
+            await self.collection.create_index(
+                index['chunk_project_id'],
+                name=index['name'],
+                unique=index['uniqe']
+            )
+            
+        
+             
     async def create_chunk(self,chunk:DataChunck):
         result=self.collection.insert_one(chunk.dict(by_alias=True,exclude_unset=True))
         chunk._id=result.inserted_id
@@ -31,10 +51,10 @@ class ChunkModel(BaseDataModel):
             ]
             await self.collection.bulk_write(opeations)
         return len(chunks)    
-    async def delete_chunks_By_Projectid(self,Project_id:ObjectId):
+    async def delete_chunks_By_Projectid(self,project_id:ObjectId):
         result=await self.collection.delete_many({
             
-            "chunk_project_id":Project_id
+            "chunk_project_id":project_id
         }
         )
         return result.deleted_count

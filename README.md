@@ -9,6 +9,8 @@ This minimal implemantion of rag model
  $ conda create -n mini-rag-app python=3.8
 
 ```
+
+
  3)activate conda :
 ```bash
 $ conda  activate mini-rag-app
@@ -24,6 +26,12 @@ $ cp .env.example .env
 ```
 setup your enviroment like `open_ai_key`
 
+### Docker Compose Service 
+```bash
+$ cd docker
+$ cp .env.example .env
+- upadete `.env` with your credintails
+```
 ## Command to run fastapi :
 ```bash
 $ uvicorn main:app --reload --host 0.0.0.0 --port 5000
