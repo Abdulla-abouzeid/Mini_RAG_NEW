@@ -7,3 +7,4 @@ class ResponseSignal(Enum):
     file_validation_failed = "File validation failed."
     Proceassing_failed = "Processing failed."
     Proceassing_successfully = "Processing successfully."
+    No_files_found="No files found for the given project."
