@@ -22,6 +22,11 @@ class Settings(BaseSettings):
     INPUT_DEFAULT_MAX_CHARCTERS:int=None
     GENERATION_DEFAULT_MAX_CHARCTERS:int=None
     GENERATION_DEFAULT_TEMPERATURE:float=None
+    VECTORDB_BACKEND: str
+    VECTOR_DB_PATH:str
+    VECTOR_DB_METHOD:str=None
+    
+    
     
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
       
