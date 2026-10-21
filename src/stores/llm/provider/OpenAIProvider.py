@@ -49,7 +49,7 @@ class OpenAIProvider(LLMInterface):
         max_output_token=max_output_token if max_output_token else self.default_generation_max_output_tokens
         temparture=temparture if temparture else self.default_temperature
         chat_history.append(
-            self.construct_prompt(prompyt=prompt,role=OPENAIENUM.USER.value)
+            self.construct_prompt(prompt=prompt,role=OPENAIENUM.USER.value)
         )
         response=self.client.chat.completions.create(
             model=self.generation_model_id,
@@ -79,11 +79,19 @@ class OpenAIProvider(LLMInterface):
            self.logger.error("Failed to get embedding from OpenAI API.")
            return None
        return respones.data[0].embedding
+   
+   
+    def process_text(self,text:str):
+        return text[:self.default_input_max_characters].strip()    
+   
+   
     def construct_prompt(self,prompt:str,role:str):
         return{
             "role" : role,
             "content": self.process_text(prompt)
         }    
-    def process_text(self,text:str):
-        return text[:self.default_input_max_characters].strip()    
+        
+                
+        
+        
         
