@@ -18,7 +18,7 @@ class OpenAIProvider(LLMInterface):
         self.embedding_size=None #for vetor database
         self.client=OpenAI(
             api_key=self.api_key,
-            api_url=self.api_url
+            
             )
         
         

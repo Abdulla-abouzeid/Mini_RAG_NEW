@@ -19,11 +19,11 @@ class BaseController:
         letters = string.ascii_letters + string.digits
         return ''.join(random.choice(letters) for _ in range(length))
     def get_database_path(self,db_name:str):
-        db_path=os.path.join(
-            self.db_dirc,db_name
-        )
-        if not os.path.exists(db_path):
-            os.mkdir(db_path)
-        return db_path    
-    
+            db_path=os.path.join(
+                self.db_dirc,db_name
+            )
+            if not os.path.exists(db_path):
+                os.makedirs(db_path, exist_ok=True)
+            return db_path    
+        
     

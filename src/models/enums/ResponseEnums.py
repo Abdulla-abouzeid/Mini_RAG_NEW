@@ -8,3 +8,4 @@ class ResponseSignal(Enum):
     Proceassing_failed = "Processing failed."
     Proceassing_successfully = "Processing successfully."
     No_files_found="No files found for the given project."
+    Project_not_found_error="Project_not_found_error"

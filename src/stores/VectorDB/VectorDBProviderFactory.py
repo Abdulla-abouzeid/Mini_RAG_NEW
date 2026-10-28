@@ -1,8 +1,8 @@
 from .providerDB import QdrantDBProvider
-from ...helpers.config import Settings,get_settings
+from helpers.config import Settings,get_settings
 from .VectorDBEnum import VectorDBEnum,DistanceMethodEnum
 from fastapi import Depends
-from ...controlles.BaseController import BaseController
+from controlles.BaseController import BaseController
 
 class VectorDBProviderFactory:
     def __init__(self,config:Settings =Depends(get_settings)):
